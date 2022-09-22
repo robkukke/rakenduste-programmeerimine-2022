@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Calculation } from './components/Calculation';
+import { DisplayInput } from './components/DisplayInput';
 
 import './App.css';
 
@@ -23,6 +25,19 @@ const App = () => {
         height: '100vh'
       }}
     >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'row',
+          gap: '25px',
+          height: '20vh'
+        }}
+      >
+        <Calculation />
+        <DisplayInput />
+      </Box>
       {/* Siin puudub nimi, ehk tuleb defaultPropsist */}
       <PropExample />
       <PropExample name='Robin' />
