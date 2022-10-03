@@ -1,0 +1,45 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:prettier/recommended"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "printWidth": 80,
+    "singleQuote": false,
+    "jsxSingleQuote": false,
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "trailingComma": "none",
+    "arrowParens": "avoid",
+    "singleAttributePerLine": true
+  }
+}
