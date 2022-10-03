@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const app = express()
 const PORT = 8080
 require("dotenv").config()
+const todoRoutes = require("./routes/todo.routes")
 const dogsRoutes = require("./routes/dogs.routes")
 const catsRoutes = require("./routes/cats.routes")
 
@@ -17,6 +18,7 @@ mongoose
   .then(() => console.log("Database connection established"))
   .catch(e => console.error(e))
 
+app.use("/todos", todoRoutes)
 app.use("/dogs", dogsRoutes)
 app.use("/cats", catsRoutes)
 

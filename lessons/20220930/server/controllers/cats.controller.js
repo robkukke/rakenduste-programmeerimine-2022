@@ -22,13 +22,20 @@ exports.update = (req, res) => {
    ja muudab ainult seda, kui see eksisteerib.
   */
 
-  cats = cats.map(cat => {
-    if (cat === name) {
-      return cat + "_updated"
-    }
-    return cat
-  })
+  /*
+   cats = cats.map(cat => {
+     if (cat === name) {
+       return cat + "_updated"
+     }
+     return cat
+   })
+  */
 
+  let index = cats.indexOf(name)
+
+  if (index !== -1) {
+    cats[index] = name + "_updated"
+  }
   res.send(cats)
 }
 
@@ -37,6 +44,12 @@ exports.delete = (req, res) => {
 
   const { name } = req.params
 
-  cats = cats.filter(cat => cat !== name)
+  // cats = cats.filter(cat => cat !== name)
+
+  let index = cats.indexOf(name)
+
+  if (index !== -1) {
+    cats.splice(index, 1)
+  }
   res.send(cats)
 }
