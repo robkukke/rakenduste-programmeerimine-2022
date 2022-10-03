@@ -10,7 +10,6 @@ exports.create = async (req, res) => {
   const { name } = req.params
 
   const doggie = await Doggie.create({ name })
-
   res.send(doggie)
 }
 
@@ -19,10 +18,23 @@ exports.read = async (req, res) => {
   res.send(doggies)
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   // Täiendada ise, otsida mongoosejs.com dokumentatsioonist (nt findOneAndReplace)
+
+  const { name } = req.params
+
+  const doggie = await Doggie.findOneAndUpdate(
+    { name: name },
+    { name: name + "_updated" }
+  )
+  res.send(doggie)
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
   // Täiendada ise, otsida mongoosejs.com dokumentatsioonist
+
+  const { name } = req.params
+
+  const doggie = await Doggie.findOneAndDelete({ name: name })
+  res.send(doggie)
 }
