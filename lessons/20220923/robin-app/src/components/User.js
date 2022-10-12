@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Box, TextField, Button, Grid, Typography } from "@mui/material"
 
 export const User = ({ name, email, id, onEdit, onDelete }) => {
   const [isEdit, setIsEdit] = useState(false)
@@ -18,31 +19,57 @@ export const User = ({ name, email, id, onEdit, onDelete }) => {
   }
 
   return (
-    <div>
+    <Box>
       {isEdit ? (
         <form onSubmit={handleOnEditSubmit}>
-          <input
-            placeholder="Name"
-            name="name"
-            defaultValue={name}
-          />
-          <input
-            placeholder="Email"
-            name="email"
-            defaultValue={email}
-          />
-          <button onSubmit={handleOnEditSubmit}>Save</button>
+          <Grid
+            container
+            alignItems="center"
+            justify="center"
+            direction="row"
+            gap="25px"
+          >
+            <Grid item>
+              <TextField
+                type="text"
+                placeholder="Name"
+                name="name"
+                defaultValue={name}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                type="text"
+                placeholder="Email"
+                name="email"
+                defaultValue={email}
+              />
+            </Grid>
+            <Button
+              variant="contained"
+              type="submit"
+            >
+              Save
+            </Button>
+          </Grid>
         </form>
       ) : (
-        <div className="user">
-          <span className="user-name">{name}</span>
-          <span className="user-email">{email}</span>
-          <div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        </div>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column"
+          }}
+        >
+          <Typography>{name}</Typography>
+          <Typography>{email}</Typography>
+          <Box>
+            <Button onClick={handleEdit}>Edit</Button>
+            <Button onClick={handleDelete}>Delete</Button>
+          </Box>
+        </Box>
       )}
-    </div>
+    </Box>
   )
 }
