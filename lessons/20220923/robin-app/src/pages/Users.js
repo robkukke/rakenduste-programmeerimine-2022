@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import Header from "../components/Header"
 import { User } from "../components/User"
 
@@ -11,34 +11,10 @@ const Users = () => {
   }, [])
 
   const fetchData = async () => {
-    await fetch("https://jsonplaceholder.typicode.com/users")
+    await fetch("https://jsonplaceholder.typicode.com/users?_page=0&_limit=5")
       .then(response => response.json())
       .then(data => setUsers(data))
-      .catch(error => console.log(error))
-  }
-
-  const onAdd = async (name, email) => {
-    await fetch("https://jsonplaceholder.typicode.com/users", {
-      method: "POST",
-      body: JSON.stringify({
-        name: name,
-        email: email
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(response => {
-        if (response.status !== 201) {
-          return
-        } else {
-          return response.json()
-        }
-      })
-      .then(data => {
-        setUsers(users => [...users, data])
-      })
-      .catch(error => console.log(error))
+      .then(json => console.log(json))
   }
 
   const onEdit = async (id, name, email) => {
@@ -52,45 +28,31 @@ const Users = () => {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
-      .then(response => {
-        if (response.status !== 200) {
-          return
-        } else {
-          return response.json()
-        }
-      })
+      .then(response => response.json())
       .then(data => {
-        // setUsers((users) => [...users, data]);
         const updatedUsers = users.map(user => {
           if (user.id === id) {
             user.name = name
             user.email = email
           }
-
           return user
         })
 
         setUsers(users => updatedUsers)
       })
-      .catch(error => console.log(error))
+      .then(json => console.log(json))
   }
 
   const onDelete = async id => {
     await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
       method: "DELETE"
-    })
-      .then(response => {
-        if (response.status !== 200) {
-          return
-        } else {
-          setUsers(
-            users.filter(user => {
-              return user.id !== id
-            })
-          )
-        }
-      })
-      .catch(error => console.log(error))
+    }).then(
+      setUsers(
+        users.filter(user => {
+          return user.id !== id
+        })
+      )
+    )
   }
 
   return (
@@ -101,7 +63,8 @@ const Users = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          flexDirection: "row",
+          flexDirection: "column",
+          gap: "25px",
           height: "80vh"
         }}
       >

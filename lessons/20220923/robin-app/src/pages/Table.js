@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, TableCell, Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import Header from "../components/Header"
 
 const Table = () => {
